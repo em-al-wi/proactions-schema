@@ -217,6 +217,12 @@
     },
     {
       "$ref": "#/definitions/steps/SANITIZE"
+    },
+    {
+      "$ref": "#/definitions/steps/ELEVENLABS_TTS"
+    },
+    {
+      "$ref": "#/definitions/steps/ELEVENLABS_STT"
     }
   ],
   "definitions": {
@@ -2412,6 +2418,51 @@
             "description": "Validate and repair an xml string if necessary",
             "default": "false"
           }
+        }
+      },
+      "ELEVENLABS_TTS": {
+        "type": "object",
+        "description": "Use elevenlabs to generate an audio file from a text (Text-to-Speech)",
+        "required": ["step"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["ELEVENLABS_TTS"],
+            "description": "The ELEVENLABS_TTS step type"
+          },
+          "model_id": {
+            "type": "string",
+            "description": "The elevenlabs model that will be used"
+          },
+          "voice_id": {
+            "type": "string",
+            "description": "The voice id to be used for this operation",
+            "default": "21m00Tcm4TlvDq8ikWAM"
+          },
+          "additionalProperties": true
+        }
+      },
+      "ELEVENLABS_STT": {
+        "type": "object",
+        "description": "Use elevenlabs to transcribe a given audio file to a text (Speech-to-Text)",
+        "required": ["step"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["ELEVENLABS_STT"],
+            "description": "The ELEVENLABS_STT step type"
+          },
+          "model_id": {
+            "type": "string",
+            "description": "The elevenlabs model that will be used",
+            "default": "scribe_v1"
+          },
+          "voice_id": {
+            "type": "string",
+            "description": "The voice id to be used for this operation",
+            "default": "21m00Tcm4TlvDq8ikWAM"
+          },
+          "additionalProperties": true
         }
       }
     },
