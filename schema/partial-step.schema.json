@@ -214,6 +214,9 @@
     },
     {
       "$ref": "#/definitions/steps/HUB_YOUTUBE_UPLOAD"
+    },
+    {
+      "$ref": "#/definitions/steps/SANITIZE"
     }
   ],
   "definitions": {
@@ -2386,6 +2389,28 @@
           "additionalMetadata": {
             "type": "object",
             "description": "Additional metadata for the YouTube upload"
+          }
+        }
+      },
+      "SANITIZE": {
+        "type": "object",
+        "description": "Cleanup a given text input",
+        "required": ["step"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["SANITIZE"],
+            "description": "The SANITIZE step type"
+          },
+          "stripMarkdown": {
+            "type": "boolean",
+            "description": "Remove markdown code blocks from an LLM response",
+            "default": "false"
+          },
+          "validateAndRepairXml": {
+            "type": "boolean",
+            "description": "Validate and repair an xml string if necessary",
+            "default": "false"
           }
         }
       }
