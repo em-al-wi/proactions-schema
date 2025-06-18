@@ -42,6 +42,17 @@
             }
           ]
         },
+        "SLASH_MENU": {
+          "oneOf": [
+            {
+              "$ref": "https://raw.githubusercontent.com/em-al-wi/proactions-schema/main/schema/partial-floatingMenu.schema.json"
+            },
+            {
+              "type": "string",
+              "description": "Path to an external slash menu file using !include directive"
+            }
+          ]
+        },
         "TEMPLATES": {
           "oneOf": [
             {
