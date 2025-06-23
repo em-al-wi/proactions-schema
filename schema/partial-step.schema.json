@@ -12,6 +12,9 @@
       "$ref": "#/definitions/steps/IF"
     },
     {
+      "$ref": "#/definitions/steps/END_IF"
+    },
+    {
       "$ref": "#/definitions/steps/SET"
     },
     {
@@ -268,6 +271,22 @@
             "required": ["test"]
           }
         ]
+      },
+      "END_IF": {
+        "type": "object",
+        "description": "Ends the execution of a flow based on the given condition.",
+        "required": ["step"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["END_IF"],
+            "description": "The END_IF step type"
+          },
+          "condition": {
+            "type": "string",
+            "description": "The condition to evaluate. Flow will be terminated gracefully when condition evaluates to true."
+          }
+        }
       },
       "SET": {
         "type": "object",
