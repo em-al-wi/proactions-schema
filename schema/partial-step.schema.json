@@ -226,6 +226,9 @@
     },
     {
       "$ref": "#/definitions/steps/ELEVENLABS_STT"
+    },
+    {
+      "$ref": "#/definitions/steps/CHANGE_VIEW_SIZE"
     }
   ],
   "definitions": {
@@ -2482,6 +2485,26 @@
             "default": "21m00Tcm4TlvDq8ikWAM"
           },
           "additionalProperties": true
+        }
+      },
+      "CHANGE_VIEW_SIZE": {
+        "type": "object",
+        "description": "Change the size of the Prime Command Palette",
+        "required": ["step", "width", "height"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["CHANGE_VIEW_SIZE"],
+            "description": "The CHANGE_VIEW_SIZE step type"
+          },
+          "width": {
+            "type": "number",
+            "description": "The target width of the view"
+          },
+          "height": {
+            "type": "number",
+            "description": "The target height of the view"
+          }
         }
       }
     },
