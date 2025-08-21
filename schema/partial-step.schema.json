@@ -810,7 +810,7 @@
           },
           "at": {
             "type": "string",
-            "enum": ["XPATH", "CURSOR", "CURSOR_PARAGRAPH"],
+            "enum": ["XPATH", "CURSOR", "CURSOR_PARAGRAPH", "REPORT"],
             "description": "Position reference for where to get content. If not specified, reads full document text."
           },
           "xpath": {
@@ -846,7 +846,7 @@
           },
           "at": {
             "type": "string",
-            "enum": ["XPATH", "CURSOR", "CURSOR_PARAGRAPH"],
+            "enum": ["XPATH", "CURSOR", "CURSOR_PARAGRAPH", "REPORT"],
             "description": "Position reference for where to get content. If not specified, reads full document XML."
           },
           "xpath": {
