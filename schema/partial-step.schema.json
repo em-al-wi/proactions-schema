@@ -3926,6 +3926,10 @@
               "dall-e-2"
             ]
           },
+          "instruction": {
+            "type": "string",
+            "description": "The user prompt to send to the LLM (supports templates)"
+          },
           "size": {
             "type": "string",
             "description": "Desired image size (model-dependent)"
@@ -4081,6 +4085,10 @@
               "dall-e-3",
               "dall-e-2"
             ]
+          },
+          "instruction": {
+            "type": "string",
+            "description": "The user prompt to send to the LLM (supports templates)"
           },
           "size": {
             "type": "string",
@@ -4242,6 +4250,10 @@
               "dall-e-3",
               "dall-e-2"
             ]
+          },
+          "instruction": {
+            "type": "string",
+            "description": "The user prompt to send to the LLM (supports templates)"
           },
           "size": {
             "type": "string",
@@ -6140,5 +6152,5 @@
       }
     }
   },
-  "x-generatedAt": "2025-10-18T13:14:04.663Z"
+  "x-generatedAt": "2025-10-18T14:09:59.708Z"
 }
