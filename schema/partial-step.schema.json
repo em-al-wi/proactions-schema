@@ -1362,6 +1362,10 @@
             ],
             "description": "Upload an image to BrighterAI, poll for processing completion and download the anonymized image. The resulting anonymized image blob is written to the configured output. (Note: Aliases SERVICE_BRIGHTER_AI are deprecated, use 'BRIGHTER_AI' instead)"
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'BRIGHTER_AI'."
+          },
           "serviceName": {
             "type": "string",
             "description": "Service operation name (e.g. blur, dnat, mask). If not provided, blur is used."
@@ -1458,6 +1462,10 @@
               "SERVICE_DEEPL_TRANSLATE"
             ],
             "description": "Translate text using DeepL. Supports many optional DeepL parameters and returns the translated text as the default text output. (Note: Aliases SERVICE_DEEPL_TRANSLATE are deprecated, use 'DEEPL_TRANSLATE' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'DEEPL'."
           },
           "instruction": {
             "type": "string",
@@ -1585,6 +1593,10 @@
               "SERVICE_DEEPL_WRITE"
             ],
             "description": "Rephrase/write text using DeepL Write endpoint. Returns the rephrased text in the default text output. (Note: Aliases SERVICE_DEEPL_WRITE are deprecated, use 'DEEPL_WRITE' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'DEEPL_WRITE'."
           },
           "instruction": {
             "type": "string",
@@ -1956,6 +1968,10 @@
             ],
             "description": "Generate speech audio from text using ElevenLabs TTS. Text is taken from the default text input or a flow variable via `in`."
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'ELEVENLABS'."
+          },
           "voice_id": {
             "type": "string",
             "description": "Voice identifier to use for synthesis"
@@ -2066,6 +2082,10 @@
               "ELEVENLABS_STT"
             ],
             "description": "Transcribe audio using ElevenLabs STT. Provides the transcribed text and optional JSON result."
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'ELEVENLABS'."
           },
           "model_id": {
             "type": "string",
@@ -2189,6 +2209,10 @@
             ],
             "description": "Initiate OAuth authorization flow for YouTube (requires ProActions-Hub). Opens the auth URL when available unless cfg.omitOpenAuth is true."
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'HUB'."
+          },
           "omitOpenAuth": {
             "type": "boolean",
             "description": "If true, do not automatically open the authorization URL in a new window; return the URL in the response instead."
@@ -2237,6 +2261,10 @@
             ],
             "description": "Check the status of a previously initiated YouTube OAuth authorization flow."
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'HUB'."
+          },
           "account": {
             "type": "string",
             "description": "Optional account identifier used by the Hub API."
@@ -2281,6 +2309,10 @@
             ],
             "description": "Log out the configured Hub YouTube account. Uses POST to logout and returns the resulting object."
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'HUB'."
+          },
           "account": {
             "type": "string",
             "description": "Account identifier to log out (resolved)."
@@ -2324,6 +2356,10 @@
               "HUB_YOUTUBE_UPLOAD"
             ],
             "description": "Upload a video to YouTube via the Hub service. Supports video file, optional thumbnail, metadata fields (title, description, privacyStatus, categoryId), tags and additionalMetadata. Progress can be shown when cfg.updateProgress is true."
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'HUB'."
           },
           "title": {
             "type": "string",
@@ -2448,6 +2484,10 @@
             ],
             "description": "Extract textual content from a URL using the ProActions-Hub extraction tool. The URL can be provided via the default text input or the `in`/`url` configuration."
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'HUB'."
+          },
           "inputs": {
             "type": "array",
             "description": "Input mappings from flow context to step inputs",
@@ -2510,6 +2550,10 @@
               "OPENAI_ASSISTANT"
             ],
             "description": "Create or reuse an OpenAI assistant. If cfg.assistantId is provided the assistant will be retrieved; otherwise a new assistant is created. The created or retrieved assistant is written to the flow context."
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'OPENAI_COMPLETION'."
           },
           "assistantId": {
             "type": "string",
@@ -2576,6 +2620,10 @@
             ],
             "description": "Create or reuse an OpenAI thread. If cfg.reuse and cfg.storeIn are provided the thread id may be reused. The created thread is written to the flow context."
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'OPENAI_COMPLETION'."
+          },
           "reuse": {
             "type": "boolean",
             "description": "If true and storeIn provided, try to reuse a persisted thread id"
@@ -2629,6 +2677,10 @@
             ],
             "description": "Delete a thread using its id. Provide the thread object or id via inputs."
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'OPENAI_COMPLETION'."
+          },
           "inputs": {
             "type": "array",
             "description": "Input mappings from flow context to step inputs",
@@ -2668,6 +2720,10 @@
               "OPENAI_THREAD_FILES"
             ],
             "description": "Create a vector store for thread file tools and optionally upload files. Writes created store to flow context and optional uploaded file list to an optional output."
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'OPENAI_COMPLETION'."
           },
           "name": {
             "type": "string",
@@ -2790,6 +2846,10 @@
             ],
             "description": "Send a message to a thread/assistant. The assistant and thread inputs are required. The message can be provided via cfg.instruction or via default text input. The assistant response text is stored in the default text output."
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'OPENAI_COMPLETION'."
+          },
           "instruction": {
             "type": "string",
             "description": "Optional message instruction; if omitted the default text input is used."
@@ -2880,6 +2940,10 @@
               "SERVICE_OPENAI_COMPLETION"
             ],
             "description": "Chat/completion step that calls OpenAI (or Hub/Azure variants). Supports messages, images, audio, attachments, tools (functions), structured outputs (json_schema/json_object/list), reasoning and audio output. Many step-level configuration options are supported via cfg.*. (Note: Aliases SERVICE_OPENAI_COMPLETION are deprecated, use 'OPENAI_COMPLETION' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'OPENAI_COMPLETION'."
           },
           "model": {
             "type": "string",
@@ -3199,6 +3263,10 @@
             ],
             "description": "Chat/completion step that calls OpenAI (or Hub/Azure variants). Supports messages, images, audio, attachments, tools (functions), structured outputs (json_schema/json_object/list), reasoning and audio output. Many step-level configuration options are supported via cfg.*."
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'HUB'."
+          },
           "model": {
             "type": "string",
             "description": "Model id or deployment id to use"
@@ -3301,6 +3369,10 @@
           "audios": {
             "type": "array",
             "description": "Array of audio inputs"
+          },
+          "target": {
+            "type": "string",
+            "description": "Override the target used on service configuration level."
           },
           "outputs": {
             "type": "array",
@@ -3517,6 +3589,10 @@
               "SERVICE_AZURE_OPENAI_COMPLETION"
             ],
             "description": "Chat/completion step that calls OpenAI (or Hub/Azure variants). Supports messages, images, audio, attachments, tools (functions), structured outputs (json_schema/json_object/list), reasoning and audio output. Many step-level configuration options are supported via cfg.*. (Note: Aliases SERVICE_AZURE_OPENAI_COMPLETION are deprecated, use 'AZURE_OPENAI_COMPLETION' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'AZURE_OPENAI_COMPLETION'."
           },
           "model": {
             "type": "string",
@@ -3837,6 +3913,10 @@
             ],
             "description": "Generate images using OpenAI image models (DALL·E and GPT-Image-1). Supports model, size, quality, count (n), response_format and other parameters. The generated images are stored in the configured output key or default `imageList`. (Note: Aliases SERVICE_OPENAI_IMAGE_GENERATION are deprecated, use 'OPENAI_IMAGE_GENERATION' instead)"
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'OPENAI_IMAGE_GENERATION'."
+          },
           "model": {
             "type": "string",
             "description": "Image model to use (gpt-image-1, dall-e-3, dall-e-2)",
@@ -3977,7 +4057,7 @@
       },
       "HUB_IMAGE_GENERATION": {
         "type": "object",
-        "description": "No description provided",
+        "description": "ImageGeneration using ProActions Hub.",
         "required": [
           "step"
         ],
@@ -3985,10 +4065,13 @@
           "step": {
             "type": "string",
             "enum": [
-              "HUB_IMAGE_GENERATION",
-              "SERVICE_OPENAI_IMAGE_GENERATION"
+              "HUB_IMAGE_GENERATION"
             ],
-            "description": "No description provided (Note: Aliases SERVICE_OPENAI_IMAGE_GENERATION are deprecated, use 'HUB_IMAGE_GENERATION' instead)"
+            "description": "ImageGeneration using ProActions Hub."
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'HUB'."
           },
           "model": {
             "type": "string",
@@ -4055,6 +4138,10 @@
           "outputKey": {
             "type": "string",
             "description": "FlowContext key where images will be stored (default: imageList)"
+          },
+          "target": {
+            "type": "string",
+            "description": "Override the target used on service configuration level."
           },
           "inputs": {
             "type": "array",
@@ -4130,7 +4217,7 @@
       },
       "AZURE_OPENAI_IMAGE_GENERATION": {
         "type": "object",
-        "description": "No description provided",
+        "description": "ImageGeneration using Azure OpenAI.",
         "required": [
           "step"
         ],
@@ -4141,7 +4228,11 @@
               "AZURE_OPENAI_IMAGE_GENERATION",
               "SERVICE_AZURE_OPENAI_IMAGE_GENERATION"
             ],
-            "description": "No description provided (Note: Aliases SERVICE_AZURE_OPENAI_IMAGE_GENERATION are deprecated, use 'AZURE_OPENAI_IMAGE_GENERATION' instead)"
+            "description": "ImageGeneration using Azure OpenAI. (Note: Aliases SERVICE_AZURE_OPENAI_IMAGE_GENERATION are deprecated, use 'AZURE_OPENAI_IMAGE_GENERATION' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'AZURE_OPENAI_IMAGE_GENERATION'."
           },
           "model": {
             "type": "string",
@@ -4296,6 +4387,10 @@
             ],
             "description": "Generate speech audio using the OpenAI Speech API (or corresponding Hub/Azure variants). Reads text from the default text input and returns an audio blob. (Note: Aliases SERVICE_OPENAI_SPEECH are deprecated, use 'OPENAI_SPEECH' instead)"
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'OPENAI_SPEECH'."
+          },
           "model": {
             "type": "string",
             "description": "Model id to use for TTS (e.g. tts-1)"
@@ -4375,10 +4470,13 @@
           "step": {
             "type": "string",
             "enum": [
-              "HUB_SPEECH",
-              "SERVICE_OPENAI_SPEECH"
+              "HUB_SPEECH"
             ],
-            "description": "ProActionsHub-compatible speech generation step. Inherits behavior from OPENAI_SPEECH. (Note: Aliases SERVICE_OPENAI_SPEECH are deprecated, use 'HUB_SPEECH' instead)"
+            "description": "ProActionsHub-compatible speech generation step. Inherits behavior from OPENAI_SPEECH."
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'HUB'."
           },
           "model": {
             "type": "string",
@@ -4399,6 +4497,10 @@
           "mime_type": {
             "type": "string",
             "description": "Optional MIME type for the produced blob (e.g. audio/mpeg)"
+          },
+          "target": {
+            "type": "string",
+            "description": "Override the target used on service configuration level."
           },
           "inputs": {
             "type": "array",
@@ -4463,6 +4565,10 @@
               "SERVICE_AZURE_OPENAI_SPEECH"
             ],
             "description": "Azure OpenAI speech step alias. (Note: Aliases SERVICE_AZURE_OPENAI_SPEECH are deprecated, use 'AZURE_OPENAI_SPEECH' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'AZURE_OPENAI_SPEECH'."
           },
           "model": {
             "type": "string",
@@ -4547,6 +4653,10 @@
               "SERVICE_OPENAI_TRANSCRIPTION"
             ],
             "description": "Transcribe audio using OpenAI (or Azure/Hub variants). Reads an audio file/blob from inputs and writes the transcription text and optional segment list. (Note: Aliases SERVICE_OPENAI_TRANSCRIPTION are deprecated, use 'OPENAI_TRANSCRIPTION' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'OPENAI_TRANSCRIPTION'."
           },
           "instruction": {
             "type": "string",
@@ -4651,6 +4761,10 @@
             ],
             "description": "Hub-compatible transcription step (delegates to hub service). Writes transcription text and optional segments list. (Note: Aliases SERVICE_OPENAI_TRANSCRIPTION are deprecated, use 'HUB_TRANSCRIPTION' instead)"
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'HUB'."
+          },
           "instruction": {
             "type": "string",
             "description": "Optional prompt/instruction to bias transcription."
@@ -4753,6 +4867,10 @@
               "SERVICE_AZURE_OPENAI_TRANSCRIPTION"
             ],
             "description": "Azure OpenAI transcription alias (delegates to the OpenAI transcription implementation). (Note: Aliases SERVICE_AZURE_OPENAI_TRANSCRIPTION are deprecated, use 'AZURE_OPENAI_TRANSCRIPTION' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'AZURE_OPENAI_TRANSCRIPTION'."
           },
           "instruction": {
             "type": "string",
@@ -5042,6 +5160,10 @@
             ],
             "description": "Upscale an image using StabilityAI upscale endpoint. Uploads a provided image blob and returns the upscaled image blob. (Note: Aliases SERVICE_STABILITY_AI_UPSCALE are deprecated, use 'STABILITY_AI_UPSCALE' instead)"
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'STABILITY_AI'."
+          },
           "prompt": {
             "type": "string",
             "description": "Optional prompt describing desired changes to the image"
@@ -5136,6 +5258,10 @@
               "SERVICE_STABILITY_AI_OUTPAINT"
             ],
             "description": "Outpaint an image region using StabilityAI. Supports coordinates (left,right,up,down) to define the outpainting area. (Note: Aliases SERVICE_STABILITY_AI_OUTPAINT are deprecated, use 'STABILITY_AI_OUTPAINT' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'STABILITY_AI'."
           },
           "left": {
             "type": "number",
@@ -5240,6 +5366,10 @@
             ],
             "description": "Search and replace regions or objects within an image using StabilityAI. Provide a prompt and a search_prompt to locate and replace visual elements. (Note: Aliases SERVICE_STABILITY_AI_SEARCH_AND_REPLACE are deprecated, use 'STABILITY_AI_SEARCH_AND_REPLACE' instead)"
           },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'STABILITY_AI'."
+          },
           "prompt": {
             "type": "string",
             "description": "Prompt describing replacement target or desired result"
@@ -5334,6 +5464,10 @@
               "SERVICE_STABILITY_AI_SEARCH_AND_RECOLOR"
             ],
             "description": "Search and recolor elements in an image using StabilityAI. Provide select_prompt and prompt to find and recolor elements. (Note: Aliases SERVICE_STABILITY_AI_SEARCH_AND_RECOLOR are deprecated, use 'STABILITY_AI_SEARCH_AND_RECOLOR' instead)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Optional service name override. If not specified, defaults to 'STABILITY_AI'."
           },
           "select_prompt": {
             "type": "string",
@@ -6006,5 +6140,5 @@
       }
     }
   },
-  "x-generatedAt": "2025-10-18T12:43:00.547Z"
+  "x-generatedAt": "2025-10-18T13:14:04.663Z"
 }
