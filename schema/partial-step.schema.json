@@ -483,6 +483,29 @@
             "enum": [
               "number"
             ]
+          },
+          "outputs": {
+            "type": "array",
+            "description": "Output mappings from step outputs to flow context",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "name"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "text",
+                  "description": "The resolved value stored in the flow context (when using legacy name/text syntax)."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Flow context key to store the output value in"
+                }
+              },
+              "additionalProperties": false
+            }
           }
         },
         "additionalProperties": true
@@ -819,6 +842,52 @@
           "selector": {
             "type": "string",
             "description": "CSS selector of the input element to update."
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Input mappings from flow context to step inputs",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "name"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "text",
+                      "description": "Text value to set in the field (used for non-tagsinput fields and fallback)"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Flow context key to read the input value from"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "name"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "list",
+                      "description": "List of values to set (used for tagsinput fields)"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Flow context key to read the input value from"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
           }
         },
         "additionalProperties": false
@@ -852,6 +921,29 @@
               "html",
               "text"
             ]
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Input mappings from flow context to step inputs",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "name"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "text",
+                  "description": "Text content to display in the modal"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Flow context key to read the input value from"
+                }
+              },
+              "additionalProperties": false
+            }
           }
         },
         "additionalProperties": false
@@ -861,7 +953,6 @@
         "description": "Shows a notification to the user with optional title and resolved message.",
         "required": [
           "step",
-          "notificationType",
           "message"
         ],
         "properties": {
@@ -883,7 +974,8 @@
               "message",
               "task",
               "success"
-            ]
+            ],
+            "default": "info"
           },
           "message": {
             "type": "string",
@@ -931,6 +1023,29 @@
           "forceWrite": {
             "type": "boolean",
             "description": "Write content even if the document is considered read-only."
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Input mappings from flow context to step inputs",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "name"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "text",
+                  "description": "Text content to insert. If omitted, reads from the `in` parameter or default text input."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Flow context key to read the input value from"
+                }
+              },
+              "additionalProperties": false
+            }
           }
         },
         "additionalProperties": false
@@ -1117,6 +1232,52 @@
           "forceWrite": {
             "type": "boolean",
             "description": "Write content even if the document is considered read-only."
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Input mappings from flow context to step inputs",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "name"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "list",
+                      "description": "List of items to insert. If omitted, the step converts the text input to a list."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Flow context key to read the input value from"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "name"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "text",
+                      "description": "Text content to convert to a list if no list input is provided."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Flow context key to read the input value from"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
           }
         },
         "additionalProperties": false
@@ -1144,6 +1305,52 @@
             "type": "boolean",
             "description": "If true, attempts to validate and repair XML fragments found in the input.",
             "default": false
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Input mappings from flow context to step inputs",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "name"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "text",
+                  "description": "Text input to sanitize"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Flow context key to read the input value from"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "description": "Output mappings from step outputs to flow context",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "name"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "text",
+                  "description": "Sanitized text output after processing."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Flow context key to store the output value in"
+                }
+              },
+              "additionalProperties": false
+            }
           }
         },
         "additionalProperties": false
@@ -1207,6 +1414,29 @@
             ],
             "description": "Convert a textual AI response into a list of strings. Detects JSON arrays, ordered/unordered lists, comma-separated values, or falls back to a single-item array. (Note: Aliases PROCESS_TO_LIST are deprecated, use 'TO_LIST' instead)"
           },
+          "inputs": {
+            "type": "array",
+            "description": "Input mappings from flow context to step inputs",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "name"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "text",
+                  "description": "Text input to convert to a list (supports JSON arrays, markdown lists, CSV, etc.)"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Flow context key to read the input value from"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
           "outputs": {
             "type": "array",
             "description": "Output mappings from step outputs to flow context",
@@ -1252,9 +1482,9 @@
             "type": "string",
             "description": "Optional path or variable name to read the JSON string from the flowContext. If omitted, the default text input is used."
           },
-          "outputs": {
+          "inputs": {
             "type": "array",
-            "description": "Output mappings from step outputs to flow context",
+            "description": "Input mappings from flow context to step inputs",
             "items": {
               "type": "object",
               "required": [
@@ -1264,15 +1494,61 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "const": "object",
-                  "description": "The parsed JSON object stored in the flow context."
+                  "const": "text",
+                  "description": "JSON string to parse. If omitted, reads from the `in` parameter or default text input."
                 },
                 "name": {
                   "type": "string",
-                  "description": "Flow context key to store the output value in"
+                  "description": "Flow context key to read the input value from"
                 }
               },
               "additionalProperties": false
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "description": "Output mappings from step outputs to flow context",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "name"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "object",
+                      "description": "The parsed JSON object stored in the flow context."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Flow context key to store the output value in"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "name"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "text",
+                      "description": "The original JSON text string (passthrough)."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Flow context key to store the output value in"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
             }
           }
         },
@@ -1972,6 +2248,14 @@
             "type": "string",
             "description": "Optional service name override. If not specified, defaults to 'ELEVENLABS'."
           },
+          "apiKey": {
+            "type": "string",
+            "description": "Override API key from service configuration"
+          },
+          "endpoint": {
+            "type": "string",
+            "description": "Override endpoint URL from service configuration"
+          },
           "voice_id": {
             "type": "string",
             "description": "Voice identifier to use for synthesis"
@@ -2086,6 +2370,14 @@
           "service": {
             "type": "string",
             "description": "Optional service name override. If not specified, defaults to 'ELEVENLABS'."
+          },
+          "apiKey": {
+            "type": "string",
+            "description": "Override API key from service configuration"
+          },
+          "endpoint": {
+            "type": "string",
+            "description": "Override endpoint URL from service configuration"
           },
           "model_id": {
             "type": "string",
@@ -2896,6 +3188,25 @@
                     }
                   },
                   "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "name"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "text",
+                      "description": "Message text to send to the assistant. If omitted, reads from cfg.instruction or default text input."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Flow context key to read the input value from"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               ]
             }
@@ -3047,6 +3358,28 @@
           "audios": {
             "type": "array",
             "description": "Array of audio inputs"
+          },
+          "reasoning": {
+            "type": "object",
+            "description": "Reasoning configuration object to pass to the API (for models supporting reasoning)"
+          },
+          "imageDetail": {
+            "type": "string",
+            "description": "Image detail level for image inputs (low, high, auto)",
+            "enum": [
+              "low",
+              "high",
+              "auto"
+            ],
+            "default": "auto"
+          },
+          "audioFormat": {
+            "type": "string",
+            "description": "Audio format for audio inputs (e.g., wav, mp3)"
+          },
+          "attachments": {
+            "type": "array",
+            "description": "Array of generic attachments (images, audio, text) to include in the user message"
           },
           "outputs": {
             "type": "array",
@@ -3369,6 +3702,28 @@
           "audios": {
             "type": "array",
             "description": "Array of audio inputs"
+          },
+          "reasoning": {
+            "type": "object",
+            "description": "Reasoning configuration object to pass to the API (for models supporting reasoning)"
+          },
+          "imageDetail": {
+            "type": "string",
+            "description": "Image detail level for image inputs (low, high, auto)",
+            "enum": [
+              "low",
+              "high",
+              "auto"
+            ],
+            "default": "auto"
+          },
+          "audioFormat": {
+            "type": "string",
+            "description": "Audio format for audio inputs (e.g., wav, mp3)"
+          },
+          "attachments": {
+            "type": "array",
+            "description": "Array of generic attachments (images, audio, text) to include in the user message"
           },
           "target": {
             "type": "string",
@@ -3696,6 +4051,28 @@
           "audios": {
             "type": "array",
             "description": "Array of audio inputs"
+          },
+          "reasoning": {
+            "type": "object",
+            "description": "Reasoning configuration object to pass to the API (for models supporting reasoning)"
+          },
+          "imageDetail": {
+            "type": "string",
+            "description": "Image detail level for image inputs (low, high, auto)",
+            "enum": [
+              "low",
+              "high",
+              "auto"
+            ],
+            "default": "auto"
+          },
+          "audioFormat": {
+            "type": "string",
+            "description": "Audio format for audio inputs (e.g., wav, mp3)"
+          },
+          "attachments": {
+            "type": "array",
+            "description": "Array of generic attachments (images, audio, text) to include in the user message"
           },
           "outputs": {
             "type": "array",
@@ -5614,6 +5991,10 @@
               "WRITE_CLIPBOARD"
             ],
             "description": "Writes text to the user clipboard. Reads the content from the configured input (cfg.text) or from the default text input in the flow context."
+          },
+          "text": {
+            "type": "string",
+            "description": "Text to write to clipboard. If omitted, uses the default text input from flow context."
           }
         },
         "additionalProperties": false
@@ -5876,6 +6257,29 @@
           "mimeType": {
             "type": "string",
             "description": "Optional MIME type hint used when the provided input is raw base64 without a data URL header (e.g. \"audio/mpeg\")."
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Input mappings from flow context to step inputs",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "name"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "text",
+                  "description": "Audio source as data URL, http(s) URL, or raw base64. If omitted, reads from `in` config or default text input."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Flow context key to read the input value from"
+                }
+              },
+              "additionalProperties": false
+            }
           }
         },
         "additionalProperties": false
@@ -5916,6 +6320,29 @@
           "enableKeyboardControl": {
             "type": "boolean",
             "description": "Enable keyboard navigation in the selection modal."
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Input mappings from flow context to step inputs",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "name"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "list",
+                  "description": "List of options for the user to select from. If omitted, converts text input to a list automatically."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Flow context key to read the input value from"
+                }
+              },
+              "additionalProperties": false
+            }
           },
           "outputs": {
             "type": "array",
@@ -6152,5 +6579,5 @@
       }
     }
   },
-  "x-generatedAt": "2025-10-18T14:09:59.708Z"
+  "x-generatedAt": "2025-10-23T13:19:51.711Z"
 }
