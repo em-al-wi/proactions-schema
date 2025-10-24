@@ -395,7 +395,7 @@
       },
       "END": {
         "type": "object",
-        "description": "Ends the execution of a flow based on the given condition.",
+        "description": "Ends the execution of a flow based on the given condition, with optional notification.",
         "required": [
           "step"
         ],
@@ -406,11 +406,15 @@
               "END",
               "END_IF"
             ],
-            "description": "Ends the execution of a flow based on the given condition. (Note: Aliases END_IF are deprecated, use 'END' instead)"
+            "description": "Ends the execution of a flow based on the given condition, with optional notification. (Note: Aliases END_IF are deprecated, use 'END' instead)"
           },
           "condition": {
             "type": "string",
             "description": "The condition to evaluate. Flow will be terminated gracefully when condition evaluates to true."
+          },
+          "notification": {
+            "type": "object",
+            "description": "Optional notification to show when ending the flow."
           }
         },
         "additionalProperties": false
@@ -6579,5 +6583,5 @@
       }
     }
   },
-  "x-generatedAt": "2025-10-23T13:19:51.711Z"
+  "x-generatedAt": "2025-10-24T07:57:20.169Z"
 }
