@@ -83,6 +83,66 @@
           }
         }
       }
+    },
+    "swing": {
+      "type": "object",
+      "description": "Swing Web Client native integrations (v1.1.0+)",
+      "properties": {
+        "inlinetoolbar": {
+          "type": "object",
+          "description": "Add button to inline text editor toolbar (appears when selecting text)",
+          "properties": {
+            "enable": {
+              "type": "boolean",
+              "description": "Enable this integration"
+            },
+            "label": {
+              "type": "string",
+              "description": "Button label text (defaults to action title)"
+            },
+            "icon": {
+              "type": "string",
+              "description": "FontAwesome icon class (e.g., 'fa fa-magic')"
+            },
+            "allowReadOnly": {
+              "type": "boolean",
+              "description": "Allow button to be active in read-only mode",
+              "default": false
+            },
+            "isEnabled": {
+              "type": "string",
+              "description": "Nunjucks expression for button enablement (e.g., '{{ client.isTextSelected() }}')"
+            },
+            "isActive": {
+              "type": "string",
+              "description": "Nunjucks expression for button visibility"
+            }
+          },
+          "required": ["enable"]
+        },
+        "objectaction": {
+          "type": "object",
+          "description": "Add action to object three-dots menu (search results, preview pane, explorer)",
+          "properties": {
+            "enable": {
+              "type": "boolean",
+              "description": "Enable this integration"
+            }
+          },
+          "required": ["enable"]
+        },
+        "contextmenu": {
+          "type": "object",
+          "description": "Add item to right-click context menus (Explorer and other contexts)",
+          "properties": {
+            "enable": {
+              "type": "boolean",
+              "description": "Enable this integration"
+            }
+          },
+          "required": ["enable"]
+        }
+      }
     }
   }
 }

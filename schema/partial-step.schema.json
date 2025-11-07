@@ -11,9 +11,6 @@
   },
   "oneOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/em-al-wi/proactions-schema/main/schema/partial-step.form.schema.json#/definitions/FORM"
-    },
-    {
       "$ref": "#/definitions/steps/BREAK"
     },
     {
@@ -219,6 +216,9 @@
     },
     {
       "$ref": "#/definitions/steps/PROMPT"
+    },
+    {
+      "$ref": "#/definitions/steps/FORM"
     },
     {
       "$ref": "#/definitions/steps/PLAY_AUDIO"
@@ -539,7 +539,23 @@
           },
           "cases": {
             "type": "object",
-            "description": "The cases to match against the switch value. Can be an array of objects or an object with key-value pairs."
+            "description": "The cases to match against the switch value. Each case key should match a possible switch value, with the value being an array of steps to execute. Use \"default\" as a fallback case.",
+            "additionalProperties": {
+              "type": "array",
+              "description": "Array of steps to execute when this case matches the switch value",
+              "items": {
+                "$ref": "#"
+              }
+            },
+            "patternProperties": {
+              "default": {
+                "type": "array",
+                "description": "Fallback steps to execute when no other case matches",
+                "items": {
+                  "$ref": "#"
+                }
+              }
+            }
           }
         },
         "additionalProperties": true
@@ -6201,6 +6217,152 @@
         },
         "additionalProperties": false
       },
+      "FORM": {
+        "type": "object",
+        "description": "Displays a configurable form to the user (via FormBuilder). The form definition is provided in `cfg.form`. When submitted, the returned values are merged into the flowContext.",
+        "required": [
+          "step",
+          "form"
+        ],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "FORM"
+            ],
+            "description": "Displays a configurable form to the user (via FormBuilder). The form definition is provided in `cfg.form`. When submitted, the returned values are merged into the flowContext."
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the form modal."
+          },
+          "form": {
+            "type": "object",
+            "description": "Form field definitions. Each key is the field name, and the value is a FormComponent object defining the field type and properties. See the comprehensive form documentation for all available field types and properties.",
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "$ref": "https://raw.githubusercontent.com/em-al-wi/proactions-schema/main/schema/partial-step.form.schema.json#/definitions/formComponent"
+                },
+                {
+                  "$ref": "https://raw.githubusercontent.com/em-al-wi/proactions-schema/main/schema/partial-step.form.schema.json#/definitions/formGroup"
+                }
+              ]
+            }
+          },
+          "buttons": {
+            "type": "array",
+            "description": "Optional buttons configuration for the form modal. Array of button objects defining submit/cancel buttons.",
+            "items": {
+              "type": "object",
+              "description": "Form button configuration",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Button type",
+                  "enum": [
+                    "submit",
+                    "cancel"
+                  ]
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Button label text"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Button name attribute (used when type is submit)"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Button title attribute (tooltip)"
+                },
+                "class": {
+                  "type": "string",
+                  "description": "CSS class for button styling (e.g., \"btn btn-primary\")"
+                },
+                "flowAttribute": {
+                  "type": "string",
+                  "description": "Flow context variable name to store the button name/value when clicked"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            }
+          },
+          "formConfig": {
+            "type": "object",
+            "description": "Optional modal-level configuration (width, height, fullScreen, typography). See FormModalConfig for all options.",
+            "properties": {
+              "dialogSize": {
+                "type": "string",
+                "description": "Bootstrap dialog size: \"sm\", \"md\", \"lg\", \"xl\""
+              },
+              "width": {
+                "type": "string",
+                "description": "Modal width (e.g., \"720px\", \"80vw\")"
+              },
+              "maxWidth": {
+                "type": "string",
+                "description": "Maximum modal width"
+              },
+              "height": {
+                "type": "string",
+                "description": "Modal height (e.g., \"600px\", \"80vh\")"
+              },
+              "maxHeight": {
+                "type": "string",
+                "description": "Maximum modal height"
+              },
+              "fullScreen": {
+                "type": "boolean",
+                "description": "Force modal to cover entire viewport"
+              },
+              "bodyFontSize": {
+                "type": "string",
+                "description": "Font size for modal body"
+              },
+              "bodyLineHeight": {
+                "type": "string",
+                "description": "Line height for modal body"
+              },
+              "labelFontSize": {
+                "type": "string",
+                "description": "Font size for form labels"
+              },
+              "inputFontSize": {
+                "type": "string",
+                "description": "Font size for form inputs"
+              },
+              "inputLineHeight": {
+                "type": "string",
+                "description": "Line height for form inputs"
+              },
+              "diffFontSize": {
+                "type": "string",
+                "description": "Font size for diff components"
+              },
+              "diffLineHeight": {
+                "type": "string",
+                "description": "Line height for diff components"
+              },
+              "modalClass": {
+                "type": "string",
+                "description": "Additional CSS class for modal"
+              }
+            }
+          },
+          "inlineSteps": {
+            "type": "array",
+            "description": "Optional steps to execute before showing the form while an in-place loading UI is shown.",
+            "items": {
+              "$ref": "#"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
       "PLAY_AUDIO": {
         "type": "object",
         "description": "Plays audio in a lightweight floating player. Audio source can be provided as a data URL, http(s) URL, or raw base64 via `cfg.in` or via the default text input. The step mounts a closed Shadow DOM audio player and resolves when the player is closed by the user.",
@@ -6583,5 +6745,5 @@
       }
     }
   },
-  "x-generatedAt": "2025-10-24T07:57:20.169Z"
+  "x-generatedAt": "2025-11-07T13:25:13.455Z"
 }

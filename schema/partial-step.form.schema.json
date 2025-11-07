@@ -3,86 +3,9 @@
   "title": "ProActions AI-Kit Form Schema",
   "description": "Schema for FORM step and form components in ProActions AI-Kit",
   "definitions": {
-    "FORM": {
-      "type": "object",
-      "description": "Display a form to collect user input",
-      "required": [
-        "step",
-        "form"
-      ],
-      "properties": {
-        "step": {
-          "type": "string",
-          "enum": [
-            "FORM"
-          ],
-          "description": "The FORM step type"
-        },
-        "title": {
-          "type": "string",
-          "description": "Title for the form dialog"
-        },
-        "form": {
-          "type": "object",
-          "description": "Form configuration containing field definitions",
-          "additionalProperties": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/formComponent"
-              },
-              {
-                "$ref": "#/definitions/formGroup"
-              }
-            ]
-          }
-        },
-        "buttons": {
-          "type": "array",
-          "description": "Custom form buttons configuration",
-          "items": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "submit",
-                  "cancel"
-                ],
-                "description": "The button type"
-              },
-              "label": {
-                "type": "string",
-                "description": "The button text"
-              },
-              "name": {
-                "type": "string",
-                "description": "The button identifier"
-              },
-              "flowAttribute": {
-                "type": "string",
-                "description": "The attribute name to set in flowContext with the button name when clicked"
-              },
-              "class": {
-                "type": "string",
-                "description": "CSS class for the button"
-              },
-              "title": {
-                "type": "string",
-                "description": "Tooltip text for the button"
-              }
-            },
-            "required": [
-              "type"
-            ]
-          }
-        }
-      }
-    },
     "formComponent": {
       "type": "object",
-      "required": [
-        "type"
-      ],
+      "required": ["type"],
       "properties": {
         "type": {
           "type": "string",
@@ -138,20 +61,13 @@
                     "description": "The value for the option"
                   }
                 },
-                "required": [
-                  "key",
-                  "value"
-                ]
+                "required": ["key", "value"]
               }
             }
           ]
         },
         "default": {
-          "type": [
-            "string",
-            "boolean",
-            "number"
-          ],
+          "type": ["string", "boolean", "number"],
           "description": "Default value for the field"
         },
         "required": {
@@ -200,11 +116,7 @@
           "type": "object",
           "description": "Conditional visibility rules for the field",
           "additionalProperties": {
-            "type": [
-              "string",
-              "number",
-              "boolean"
-            ]
+            "type": ["string", "number", "boolean"]
           }
         },
         "accept": {
@@ -237,22 +149,18 @@
         },
         "mode": {
           "type": "string",
-          "enum": [
-            "chars",
-            "words",
-            "lines",
-            "sentences"
-          ],
+          "enum": ["chars", "words", "lines", "sentences"],
           "description": "Mode for diff component"
+        },
+        "interactive": {
+          "type": "boolean",
+          "description": "Interactive mode for diff component"
         }
       }
     },
     "formGroup": {
       "type": "object",
-      "required": [
-        "label",
-        "fields"
-      ],
+      "required": ["label", "fields"],
       "properties": {
         "label": {
           "type": "string",
