@@ -6253,6 +6253,8 @@
           "buttons": {
             "type": "array",
             "description": "Optional buttons configuration for the form modal. Array of button objects defining submit/cancel buttons.",
+            "minItems": 1,
+            "maxItems": 10,
             "items": {
               "type": "object",
               "description": "Form button configuration",
@@ -6745,5 +6747,5 @@
       }
     }
   },
-  "x-generatedAt": "2025-11-07T14:12:46.512Z"
+  "x-generatedAt": "2025-11-08T07:47:35.846Z"
 }
