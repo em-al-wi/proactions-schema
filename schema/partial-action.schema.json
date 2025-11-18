@@ -88,7 +88,7 @@
       "type": "object",
       "description": "Swing Web Client native integrations (v1.1.0+)",
       "properties": {
-        "inlinetoolbar": {
+        "inlineMenu": {
           "type": "object",
           "description": "Add button to inline text editor toolbar (appears when selecting text)",
           "properties": {
@@ -120,7 +120,7 @@
           },
           "required": ["enable"]
         },
-        "objectaction": {
+        "objectAction": {
           "type": "object",
           "description": "Add action to object three-dots menu (search results, preview pane, explorer)",
           "properties": {
@@ -131,7 +131,7 @@
           },
           "required": ["enable"]
         },
-        "contextmenu": {
+        "contextMenu": {
           "type": "object",
           "description": "Add item to right-click context menus (Explorer and other contexts)",
           "properties": {
